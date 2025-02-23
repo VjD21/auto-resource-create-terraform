@@ -7,18 +7,15 @@ pipeline {
                 stage('Deploy To Development') {
                     agent { label 'jenkins-slave-dev' }
                     environment {
-
-                        TERRAFORM_APPLY = "YES" // Set to YES to trigger apply....
-                        TERRAFORM_DESTROY = "NO" // Set to YES if you want to destroy...
-                    }
-                    when {
-                        branch 'production'
+                        TERRAFORM_APPLY = "YES"   // Set to YES to trigger apply
+                        TERRAFORM_DESTROY = "NO"  // Set to YES if you want to destroy
                     }
 
+                    stages {
                         stage('Terraform Init & Plan') {
                             when {
                                 expression {
-                                    "${env.TERRAFORM_APPLY}" == 'YES'
+                                    env.TERRAFORM_APPLY == 'YES'
                                 }
                             }
                             steps {
@@ -29,10 +26,11 @@ pipeline {
                                 }
                             }
                         }
+
                         stage('Terraform Apply') {
                             when {
                                 expression {
-                                    "${env.TERRAFORM_APPLY}" == 'YES'
+                                    env.TERRAFORM_APPLY == 'YES'
                                 }
                             }
                             steps {
@@ -41,10 +39,11 @@ pipeline {
                                 }
                             }
                         }
+
                         stage('Terraform Destroy') {
                             when {
                                 expression {
-                                    "${env.TERRAFORM_DESTROY}" == 'YES'
+                                    env.TERRAFORM_DESTROY == 'YES'
                                 }
                             }
                             steps {
