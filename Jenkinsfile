@@ -14,17 +14,7 @@ pipeline {
                     when {
                         branch 'production'
                     }
-                    stages {
-                        stage('Clone Terraform Modules') {
-                            steps {
-                                sh 'pwd'
-                                sh 'rm -rf terraform-modules'
-                                sh 'ls -al'
-                                sh "git clone https://github.com/VjD21/auto-resource-create-terraform.git -b production terraform-modules"
-                                sh 'ls -al terraform-modules/'
-                                sh 'find terraform-modules/ -name "*.tf"'
-                            }
-                        }
+
                         stage('Terraform Init & Plan') {
                             when {
                                 expression {
@@ -32,7 +22,7 @@ pipeline {
                                 }
                             }
                             steps {
-                                dir('terraform-modules/env') {  // Navigate to development directory
+                                dir('env') {  // Navigate to development directory
                                     sh 'terraform init'
                                     sh 'terraform validate'
                                     sh 'terraform plan -var-file=terraform.tfvars'
@@ -46,7 +36,7 @@ pipeline {
                                 }
                             }
                             steps {
-                                dir('terraform-modules/env') {
+                                dir('env') {
                                     sh 'terraform apply -var-file=terraform.tfvars --auto-approve'
                                 }
                             }
@@ -58,7 +48,7 @@ pipeline {
                                 }
                             }
                             steps {
-                                dir('terraform-modules/env') {
+                                dir('env') {
                                     sh 'terraform init'
                                     sh 'terraform validate'
                                     sh 'terraform destroy -var-file=terraform.tfvars --auto-approve'
