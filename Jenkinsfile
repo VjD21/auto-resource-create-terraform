@@ -1,9 +1,6 @@
 pipeline {
     agent none
-    environment {
-        PROJECT = "WELCOME TO Jenkins-Terraform Modules Pipeline"
-        TERRAFORM_MODULE_REPO = "git@github.com:VjD21/auto-resource-create-terraform.git"
-    }
+
     stages {
         stage('For Parallel Stages') {
             parallel {
@@ -23,7 +20,7 @@ pipeline {
                                 sh 'pwd'
                                 sh 'rm -rf terraform-modules'
                                 sh 'ls -al'
-                                sh "git clone ${TERRAFORM_MODULE_REPO} terraform-modules"
+                                sh "git clone https://github.com/VjD21/auto-resource-create-terraform.git -b production terraform-modules"
                                 sh 'ls -al terraform-modules/'
                                 sh 'find terraform-modules/ -name "*.tf"'
                             }
