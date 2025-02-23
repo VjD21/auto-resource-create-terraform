@@ -8,7 +8,7 @@ pipeline {
         stage('For Parallel Stages') {
             parallel {
                 stage('Deploy To Development') {
-                    agent { label 'DEV' }
+                    agent { label 'jenkins-slave-dev' }
                     environment {
 
                         TERRAFORM_APPLY = "YES" // Set to YES to trigger apply...
