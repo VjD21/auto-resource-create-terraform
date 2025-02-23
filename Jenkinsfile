@@ -7,7 +7,7 @@ pipeline {
                 stage('Deploy To Development') {
                     agent { label 'jenkins-slave-dev' }
                     environment {
-                        TERRAFORM_APPLY = "YES"   // Set to YES to trigger apply
+                        TERRAFORM_APPLY = "YES"   // Set to YES to trigger apply..
                         TERRAFORM_DESTROY = "NO"  // Set to YES if you want to destroy
                     }
 
