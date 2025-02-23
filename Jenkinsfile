@@ -2,7 +2,7 @@ pipeline {
     agent none
     environment {
         PROJECT = "WELCOME TO Jenkins-Terraform Modules Pipeline"
-        TERRAFORM_MODULE_REPO = "https://github.com/VjD21/auto-resource-create-terraform.git"
+        TERRAFORM_MODULE_REPO = "git@github.com:VjD21/auto-resource-create-terraform.git"
     }
     stages {
         stage('For Parallel Stages') {
