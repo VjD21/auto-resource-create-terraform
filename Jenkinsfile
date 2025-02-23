@@ -15,7 +15,7 @@ pipeline {
                         TERRAFORM_DESTROY = "NO" // Set to YES if you want to destroy...
                     }
                     when {
-                        branch 'development'
+                        branch 'production'
                     }
                     stages {
                         stage('Clone Terraform Modules') {
