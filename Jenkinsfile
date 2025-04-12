@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         stage('Terraform Resource Create Pipeline') {
-            agent { label 'jenkins-slave-dev' }
+            agent { label 'worker-1' }
             environment {
                 TERRAFORM_APPLY = "NO"   // Set to YES to trigger apply.
                 TERRAFORM_DESTROY = "YES"  // Set to YES if you want to destroy
