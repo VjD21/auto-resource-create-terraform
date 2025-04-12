@@ -17,7 +17,7 @@ variable "instance_tag" {
 }
 
 variable "key_name" {
-  default = "pri_ohio"
+  default = "ohio-key"
 }
 
 variable "associate_public_ip_address" {
